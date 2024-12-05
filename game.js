@@ -26,7 +26,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     // Attach the 'flap-control' to the player object
-    document.querySelector('#player').setAttribute('flap-control', '');
+    const player = document.querySelector('#Player');
+    if (player) {
+      player.setAttribute('flap-control', '');
+    } else {
+      console.error("Element with id 'Player' not found in the DOM.");
+    }
+  
+    // Interactive Cube Component
+    AFRAME.registerComponent('interactive-cube', {
+      init: function () {
+        // Add a click event listener to the cube
+        this.el.addEventListener('click', () => {
+          // Change the cube's color when clicked
+          this.el.setAttribute('color', this.getRandomColor());
+  
+          // Move the cube upward slightly
+          const position = this.el.object3D.position;
+          this.el.object3D.position.set(position.x, position.y + 0.2, position.z);
+  
+          console.log('Cube clicked!');
+        });
+      },
+  
+      getRandomColor: function () {
+        // Generate a random color
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+    });
   
     // AR/VR Mode Manager
     AFRAME.registerComponent('mode-manager', {
@@ -51,6 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     // Attach the 'mode-manager' to the scene
-    document.querySelector('a-scene').setAttribute('mode-manager', '');
+    const scene = document.querySelector('a-scene');
+    if (scene) {
+      scene.setAttribute('mode-manager', '');
+    } else {
+      console.error("Element 'a-scene' not found in the DOM.");
+    }
   });
   
