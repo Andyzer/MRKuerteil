@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+    <script src="game.js"></script>
+  </head>
+  <body>
+    <a-scene vr-mode-ui="enabled: true" embedded>
+      <!-- Player Object -->
+      <a-box id="player" position="0 1.6 -4" depth="0.2" height="0.2" width="0.2" color="#FF0000"></a-box>
+
+      <!-- AR-Specific Components -->
+      <a-entity camera position="0 1.6 0" look-controls>
+        <a-entity id="reticle" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.04;"
+                  material="color: yellow; shader: flat;"
+                  position="0 0 -1"></a-entity>
+      </a-entity>
+
+      <!-- VR Ground -->
+      <a-plane id="ground" position="0 0 -4" rotation="-90 0 0" width="20" height="20" color="#4CAF50"></a-plane>
+
+      <!-- Lights -->
+      <a-light type="ambient" color="#FFFFFF"></a-light>
+    </a-scene>
+  </body>
+</html>
