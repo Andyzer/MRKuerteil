@@ -2,40 +2,27 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script src="reticle.js"></script>
-    <script src="game.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/components/grid-manager.js"></script>
+    <script src="js/components/movable.js"></script>
+    <script src="js/components/reticle-loader.js"></script>
   </head>
   <body>
     <a-scene xr-mode="immersive-ar" arjs>
       <!-- 3x3 Grid Wall -->
-    <a-entity id="grid" position="0 2 -6" grid-manager>
-    <!-- Grid Snap Points -->
-        <a-box id="cell1" position="-1.67 1.67 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.7"></a-box>
-        <a-box id="cell2" position="0 1.67 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.7"></a-box>
-        <a-box id="cell3" position="1.67 1.67 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.7"></a-box>
-        <a-box id="cell4" position="-1.67 0 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.7"></a-box>
-        <a-box id="cell5" position="0 0 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.7"></a-box>
-        <a-box id="cell6" position="1.67 0 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.7"></a-box>
-        <a-box id="cell7" position="-1.67 -1.67 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.7"></a-box>
-        <a-box id="cell8" position="0 -1.67 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.7"></a-box>
-        <a-box id="cell9" position="1.67 -1.67 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.7"></a-box>
-    </a-entity>
+      <a-entity id="grid" position="0 2 -5" grid-manager>
+        <a-box id="cell1" position="-1.67 1.67 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.2"></a-box>
+        <a-box id="cell2" position="0 1.67 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.2"></a-box>
+        <a-box id="cell3" position="1.67 1.67 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.2"></a-box>
+      </a-entity>
 
-      <!-- Puzzle Pieces on the Plane -->
+      <!-- Puzzle Pieces -->
       <a-box id="piece1" position="-2 0 -4" color="#FF5733" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
       <a-box id="piece2" position="-1 0 -4" color="#33FF57" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
       <a-box id="piece3" position="0 0 -4" color="#3357FF" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
-      <a-box id="piece4" position="1 0 -4" color="#FF00FF" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
-      <a-box id="piece5" position="2 0 -4" color="#FFFF00" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
-      <a-box id="piece6" position="-2 0 -5" color="#00FFFF" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
-      <a-box id="piece7" position="-1 0 -5" color="#FF0000" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
-      <a-box id="piece8" position="0 0 -5" color="#00FF00" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
-      <a-box id="piece9" position="1 0 -5" color="#0000FF" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
-
 
       <!-- Camera with Reticle -->
-      <a-entity camera position="0 1.6 0" look-controls raycaster="objects: [movable]"  wasd-controls="acceleration: 30">
-        <!-- Reticle -->
+      <a-entity camera position="0 1.6 0" look-controls wasd-controls="acceleration:100" raycaster="objects: [movable]">
         <a-entity
           id="reticle"
           geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.04"
@@ -46,10 +33,7 @@
       </a-entity>
 
       <a-plane position="0 -1 -5" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
-
       <a-sky color="#ADD8E6"></a-sky>
-      <!-- Light -->
-      <a-light type="ambient" color="#FFFFFF"></a-light>
     </a-scene>
   </body>
 </html>
