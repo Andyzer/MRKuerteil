@@ -5,12 +5,13 @@ AFRAME.registerComponent('reticle-loader', {
   init: function () {
     this.loadStart = null;
     this.loading = false;
+    this.target = null; // Track the currently hovered object
   },
-  startLoading: function () {
+  startLoading: function (target) {
     this.loadStart = performance.now();
     this.loading = true;
+    this.target = target; // Set the target object
 
-    // Reset geometry
     this.el.setAttribute('geometry', {
       primitive: 'ring',
       radiusInner: 0.02,
@@ -22,8 +23,8 @@ AFRAME.registerComponent('reticle-loader', {
   stopLoading: function () {
     this.loadStart = null;
     this.loading = false;
+    this.target = null;
 
-    // Reset geometry
     this.el.setAttribute('geometry', {
       primitive: 'ring',
       radiusInner: 0.02,
@@ -47,7 +48,7 @@ AFRAME.registerComponent('reticle-loader', {
 
       if (progress >= 1) {
         this.loading = false;
-        this.el.emit('reticle-complete'); // Emit completion event
+        this.el.emit('reticle-complete', { target: this.target }); // Emit the event with the target
       }
     }
   },

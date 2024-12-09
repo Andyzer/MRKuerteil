@@ -16,13 +16,13 @@
         <a-box id="cell3" position="1.67 1.67 0" width="1.66" height="1.66" depth="0.1" color="#CCCCCC" opacity="0.2"></a-box>
       </a-entity>
 
-      <!-- Puzzle Pieces -->
+     <!-- Puzzle Pieces -->
       <a-box id="piece1" position="-2 0 -4" color="#FF5733" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
       <a-box id="piece2" position="-1 0 -4" color="#33FF57" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
       <a-box id="piece3" position="0 0 -4" color="#3357FF" depth="0.5" height="0.5" width="0.5" movable="gridId: grid"></a-box>
 
-      <!-- Camera with Reticle -->
       <a-entity camera position="0 1.6 0" look-controls wasd-controls="acceleration:100" raycaster="objects: [movable]">
+        <!-- Reticle -->
         <a-entity
           id="reticle"
           geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.04"
@@ -33,7 +33,7 @@
       </a-entity>
 
       <a-plane position="0 -1 -5" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
-      <a-sky color="#ADD8E6"></a-sky>
+      <a-sky color="#ADD8E6" hide-in-ar-mode></a-sky>
     </a-scene>
   </body>
 </html>

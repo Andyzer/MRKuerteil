@@ -8,9 +8,9 @@ AFRAME.registerComponent('movable', {
     this.isHeld = false;
     this.startPosition = this.el.object3D.position.clone();
 
-    // Listen for reticle interaction
-    this.reticle.addEventListener('reticle-complete', () => {
-      if (this.el === this.reticle.target) {
+    // Listen for the reticle-complete event
+    this.reticle.addEventListener('reticle-complete', (event) => {
+      if (event.detail.target === this.el) {
         this.isHeld ? this.drop() : this.pickUp();
       }
     });
